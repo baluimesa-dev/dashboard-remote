@@ -34,8 +34,8 @@ const Gauge: React.FC<GaugeProps> = ({ data }) => {
     arcThickness: 20,
     minValue: 0,
     maxValue: 100,
-    startAngle: -Math.PI / 2, // Leftmost point (-90 degrees)
-    endAngle: Math.PI / 2, // Rightmost point (90 degrees)
+    startAngle: -Math.PI / 2,
+    endAngle: Math.PI / 2,
   };
 
   const { size, arcThickness, minValue, maxValue, startAngle, endAngle } = config;
@@ -61,20 +61,16 @@ const Gauge: React.FC<GaugeProps> = ({ data }) => {
   useEffect(() => {
     if (svgRef.current) {
       const svg = d3.select(svgRef.current);
-
-      // Clear existing elements
       svg.select('.arc-background').remove();
       svg.select('.center-circle').remove();
       svg.select('.tick-labels').remove();
 
-      // Draw the background arc
       svg.append('path')
         .attr('class', 'arc-background')
         .attr('d', arc as any)
         .attr('fill', '#ddd')
         .attr('transform', `translate(${size / 2},${size / 2})`);
 
-      // Draw the center circle for the pointer base
       svg.append('circle')
         .attr('class', 'center-circle')
         .attr('cx', size / 2)
@@ -82,8 +78,6 @@ const Gauge: React.FC<GaugeProps> = ({ data }) => {
         .attr('r', 6)
         .attr('fill', 'black');
         
-
-      // Draw the tick marks and labels using the same angleScale logic
       const ticks = [0, 25, 50, 75, 100];
       const tickData = ticks.map((tick) => ({
         value: tick,
@@ -122,7 +116,6 @@ const Gauge: React.FC<GaugeProps> = ({ data }) => {
   return (
     <div style={{ position: 'relative', width: `${size}px`, height: `${size / 2 + 50}px` }}>
       <svg ref={svgRef} width={size} height={size / 2 + 50}>
-        {/* Animated Pointer */}
         <animated.g
           transform={springProps.angle.to((angle) => `translate(${size / 2},${size / 2}) rotate(${(angle * 180) / Math.PI})`)}
         >
@@ -136,10 +129,9 @@ const Gauge: React.FC<GaugeProps> = ({ data }) => {
           />
         </animated.g>
 
-        {/* Percentage Text */}
         <text
           x={size / 2}
-          y={size / 2 + arcThickness + 30} // Adjusted to ensure it shows below the arc
+          y={size / 2 + arcThickness + 30} 
           textAnchor="middle"
           fontSize="20"
           fill="black"

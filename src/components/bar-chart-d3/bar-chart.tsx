@@ -25,7 +25,6 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
     const width = 800 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
-    // Remove any existing SVG elements
     d3.select(chartRef.current).selectAll('*').remove();
 
     const svg = d3
@@ -46,7 +45,6 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
       .nice()
       .range([height, 0]);
 
-    // Create a tooltip
     const tooltip = d3
       .select('body')
       .append('div')
@@ -62,7 +60,6 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
       .style('pointer-events', 'none')
       .style('opacity', 0);
 
-    // Add the bars
     svg
       .selectAll('.bar')
       .data(data)

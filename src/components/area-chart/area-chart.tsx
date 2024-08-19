@@ -14,13 +14,13 @@ const AreaChart: React.FC<AreaChartProps<Object>> = ({ data:rawData }) => {
     const handleResize = () => {
       if (svgRef.current) {
         const width = svgRef.current.parentElement?.clientWidth || 800;
-        const height = (width / 2);  // Maintain aspect ratio
+        const height = (width / 2); 
         setDimensions({ width, height });
       }
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial call to set size
+    handleResize(); 
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -35,7 +35,7 @@ const AreaChart: React.FC<AreaChartProps<Object>> = ({ data:rawData }) => {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    d3.select(svgRef.current).selectAll('*').remove(); // Clear any previous content
+    d3.select(svgRef.current).selectAll('*').remove();
 
     const svg = d3.select(svgRef.current)
       .attr('viewBox', `0 0 ${width} ${height}`)

@@ -17,11 +17,11 @@ type BarChartProps = {
 };
 
 const BarChart: React.FC<BarChartProps> = ({ data }) => {
-  const margin = { top: 20, right: 30, bottom: 40, left: 60 }; // Increased left margin
-  const containerWidth = 800; // width of the container that will contain the chart
+  const margin = { top: 20, right: 30, bottom: 40, left: 60 };
+  const containerWidth = 800;
   const containerHeight = 400;
 
-  const width = Math.max(data.length * 40, containerWidth - margin.left - margin.right); // dynamically scale width
+  const width = Math.max(data.length * 40, containerWidth - margin.left - margin.right);
   const height = containerHeight - margin.top - margin.bottom;
 
   const x = d3
@@ -106,19 +106,17 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
               />
             );
           })}
-
-          {/* Labels */}
           <text
             textAnchor="middle"
             x={width / 2}
-            y={height + margin.bottom} // Adjusted position for the x-axis label
+            y={height + margin.bottom}
           >
             Order Number
           </text>
           <text
             textAnchor="middle"
             x={-height / 2}
-            y={-margin.left + 20} // Adjusted position for the y-axis label
+            y={-margin.left + 20}
             transform="rotate(-90)"
           >
             Total Order Cost

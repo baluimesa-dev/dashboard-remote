@@ -30,7 +30,7 @@ const MapChart: React.FC<MapChartProps> = ({ data }) => {
       const height = container?.clientHeight || 500;
 
       const projection = d3.geoMercator()
-        .scale(width / 6.5)  // Adjust scale dynamically based on width
+        .scale(width / 6.5) 
         .translate([width / 2, height / 1.5]);
 
       const path = d3.geoPath().projection(projection);
